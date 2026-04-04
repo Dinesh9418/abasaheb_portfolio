@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Navbar from "./nav/Navbar";
 import { styles, css } from "../components/style/Style";
 import HeroPage from "./heroPage/HeroPage";
@@ -8,41 +7,44 @@ import Achievements from "./achievements/Achievements";
 import Testimonials from "./testimonials/Testimonials";
 import Contact from "./contact/Contact";
 import Footer from "./footer/Footer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+// ✅ All sections on one page with matching ids
+const Home = () => (
+  <div>
+    <section id="hero">
+      <HeroPage />
+    </section>
+    <section id="about">
+      <AboutPage />
+    </section>
+    <section id="services">
+      <Services />
+    </section>
+    <section id="achievements">
+      <Achievements />
+    </section>
+    <section id="testimonials">
+      <Testimonials />
+    </section>
+    <section id="contact">
+      <Contact />
+    </section>
+  </div>
+);
 
 export default function App() {
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <div style={styles.root}>
-      <style>{css}</style>
-
-      {/* NAV */}
-      <Navbar />
-
-      {/* HERO */}
-      <HeroPage />
-
-      {/* ABOUT */}
-      <AboutPage />
-
-      {/* SERVICES */}
-      <Services />
-
-      {/* ACHIEVEMENTS */}
-      <Achievements />
-
-      {/* TESTIMONIALS */}
-      <Testimonials />
-
-      {/* CONTACT */}
-      <Contact />
-
-      {/* FOOTER */}
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div style={styles.root}>
+        <style>{css}</style>
+        <Navbar />
+        <Routes>
+          {/* ✅ Single route — Navbar scrolls to sections by id */}
+          <Route path="/" element={<Home />} />
+        </Routes>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
