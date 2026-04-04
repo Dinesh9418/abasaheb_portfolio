@@ -3,18 +3,18 @@ import { styles } from "../style/Style";
 
 const TESTIMONIALS = [
   {
-    name: "Priya Sharma",
-    role: "Software Engineer, Infosys",
-    batch: "Batch of 2023",
+    name: "Shubham Jangle",
+    role: "Senior Software Engineer, Volkswagen India",
+    batch: "Batch of 2021",
     text: "The mock interview sessions and resume workshops completely changed how I approached placements. I got my dream offer because of the preparation support.",
-    initials: "PS",
+    initials: "SJ",
   },
   {
-    name: "Rahul Desai",
-    role: "Business Analyst, TCS",
-    batch: "Batch of 2022",
+    name: "Dinesh Jadhav",
+    role: "Software Engineer, LTM",
+    batch: "Batch of 2021",
     text: "He didn't just coordinate placements — he mentored us individually. That personal attention made all the difference when I was struggling with aptitude rounds.",
-    initials: "RD",
+    initials: "DJ",
   },
   {
     name: "Ananya Kulkarni",
