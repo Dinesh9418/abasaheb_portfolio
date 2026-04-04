@@ -10,7 +10,7 @@ const Footer = () => {
             <span style={styles.logoAccent}>T</span>&P — Abasaheb Shelar
           </div>
           <div style={styles.footerText}>
-            © 20256 · Training & Placement Officer · Pune
+            © 2026 · Training & Placement Officer · Pune
           </div>
         </div>
       </footer>
