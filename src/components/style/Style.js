@@ -36,7 +36,7 @@ export const styles = {
     justifyContent: "space-between",
     height: 72,
   },
-  logo: { fontSize: 22, fontWeight: 700, letterSpacing: "-0.5px", color: DARK },
+  logo: { fontSize: 22, fontWeight: 700, letterSpacing: "-0.5px", color: MUTED },
   logoAccent: { color: BLUE },
   navLinks: { display: "flex", alignItems: "center", gap: 8 },
   navLink: {
@@ -53,7 +53,7 @@ export const styles = {
   },
   navCta: {
     background: BLUE,
-    color: "#fff",
+    color: "#ffffff",
     border: "none",
     cursor: "pointer",
     fontSize: 14,
