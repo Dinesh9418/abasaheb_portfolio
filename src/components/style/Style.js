@@ -19,9 +19,6 @@ export const styles = {
     zIndex: 100,
     padding: "0 2rem",
     transition: "all 0.3s ease",
-    // background: "transparent",
-    // border: "2px solid red",
-    // background: "#12467d",
   },
   navScrolled: {
     background: "rgba(255,255,255,0.97)",
@@ -36,7 +33,12 @@ export const styles = {
     justifyContent: "space-between",
     height: 72,
   },
-  logo: { fontSize: 22, fontWeight: 700, letterSpacing: "-0.5px", color: MUTED },
+  logo: {
+    fontSize: 22,
+    fontWeight: 700,
+    letterSpacing: "-0.5px",
+    color: MUTED,
+  },
   logoAccent: { color: BLUE },
   navLinks: { display: "flex", alignItems: "center", gap: 8 },
   navLink: {
@@ -48,8 +50,6 @@ export const styles = {
     padding: "6px 12px",
     borderRadius: 6,
     fontFamily: "inherit",
-    textDecoration: "underline blue",
-    // border: "2px solid red",
   },
   navCta: {
     background: BLUE,
@@ -64,13 +64,13 @@ export const styles = {
     marginLeft: 8,
   },
   menuBtn: {
-    display: "none",
     background: "none",
     border: "none",
     cursor: "pointer",
     padding: 4,
     flexDirection: "column",
     gap: 5,
+    display: "none", // hidden by default, shown via CSS class below
   },
   bar: {
     width: 24,
@@ -78,6 +78,7 @@ export const styles = {
     background: DARK,
     borderRadius: 2,
     transition: "all 0.3s",
+    display: "block",
   },
   bar1Open: { transform: "rotate(45deg) translate(5px, 5px)" },
   bar2Open: { opacity: 0 },
@@ -94,11 +95,10 @@ export const styles = {
     border: "none",
     cursor: "pointer",
     fontSize: 15,
-    color: Text,
+    color: TEXT,
     padding: "12px 2rem",
     textAlign: "left",
     fontFamily: "inherit",
-    border: "2px solid red",
   },
 
   hero: {
@@ -136,7 +136,7 @@ export const styles = {
     letterSpacing: "0.05em",
   },
   heroName: {
-    fontSize: "clamp(2.8rem, 6vw, 4.5rem)",
+    fontSize: "clamp(2.2rem, 6vw, 4.5rem)",
     fontWeight: 700,
     color: "#fff",
     lineHeight: 1.1,
@@ -291,7 +291,7 @@ export const styles = {
 
   servicesGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
     gap: 24,
     marginTop: 48,
   },
@@ -313,7 +313,7 @@ export const styles = {
 
   achievementsGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))",
     gap: 24,
     marginTop: 48,
   },
@@ -340,7 +340,7 @@ export const styles = {
 
   testimonialsGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
     gap: 24,
     marginTop: 48,
   },
@@ -418,6 +418,7 @@ export const styles = {
     background: "#fff",
     color: TEXT,
     width: "100%",
+    boxSizing: "border-box",
   },
   textarea: { minHeight: 120, resize: "vertical" },
   submitBtn: {
@@ -440,6 +441,8 @@ export const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    flexWrap: "wrap",
+    gap: 8,
   },
   footerLogo: { fontSize: 16, fontWeight: 700, color: "#fff" },
   footerText: { fontSize: 13, color: "#475569" },
@@ -447,21 +450,45 @@ export const styles = {
 
 export const css = `
   * { box-sizing: border-box; margin: 0; padding: 0; }
+
   .nav-link:hover { background: #f1f5f9 !important; }
   .cta-btn:hover { opacity: 0.88; transform: translateY(-1px); transition: all 0.2s; }
   .outline-btn:hover { background: rgba(255,255,255,0.08) !important; }
   .service-card:hover { border-color: #bfdbfe !important; transform: translateY(-3px); transition: all 0.25s; }
   .achieve-card:hover { background: rgba(255,255,255,0.08) !important; transition: all 0.25s; }
   .form-input:focus { border-color: #1a56db !important; box-shadow: 0 0 0 3px rgba(26,86,219,0.1); }
+
+  /* ── Hamburger: hidden on desktop, shown on mobile ── */
+  .menu-btn { display: none !important; }
+
   @media (max-width: 900px) {
+    /* Show hamburger, hide desktop nav */
+    .menu-btn { display: flex !important; }
     .nav-links-wrap { display: none !important; }
+
+    /* Hero: stack vertically, hide image */
     .hero-image-wrap { display: none !important; }
+    .hero-inner { flex-direction: column !important; }
+    .hero-content { max-width: 100% !important; text-align: center; }
+    .hero-actions { justify-content: center !important; }
+    .hero-stats { justify-content: center !important; }
   }
+
   @media (max-width: 768px) {
-    [style*="gridTemplateColumns: 1fr 340px"] { grid-template-columns: 1fr !important; }
-    [style*="gridTemplateColumns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
-    [style*="marginLeft: 60"] { display: none; }
-    [style*="display: flex; gap: 32"] { gap: 20px !important; }
-    [style*="display: none; background: none; border: none; cursor: pointer; padding: 4px"] { display: flex !important; }
+    /* Stack all 2-col grids */
+    .about-grid   { grid-template-columns: 1fr !important; }
+    .contact-grid { grid-template-columns: 1fr !important; }
+
+    /* Reduce section padding */
+    .section-pad { padding: 48px 1.25rem !important; }
+
+    /* Footer stack */
+    .footer-inner { flex-direction: column !important; text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-stats { flex-direction: column !important; gap: 16px !important; align-items: center; }
+    .hero-actions { flex-direction: column !important; width: 100%; }
+    .hero-actions button { width: 100% !important; }
   }
 `;
